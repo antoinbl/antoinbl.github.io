@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mon site perso</title>
+  <meta name="description" content="Portfolio, projets et contact." />
+  <meta property="og:title" content="Mon site perso" />
+  <meta property="og:description" content="Portfolio, projets et contact." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0ea5e9" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b1020;--bg2:#0f1530;--txt:#e6e8ee;--muted:#9aa3b2;--acc:#0ea5e9;--card:#0d1228;--br:18px
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,var(--bg),var(--bg2));color:var(--txt)}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1000px;margin:0 auto;padding:28px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.4px}
+    .brand .logo{width:38px;height:38px;border-radius:14px;background:radial-gradient(120% 120% at 30% 20%,#65d1ff 0%,#0ea5e9 40%,#7c3aed 100%);box-shadow:0 10px 30px rgba(14,165,233,.35)}
+    nav{display:flex;gap:18px}
+    nav a{padding:8px 12px;border-radius:12px;color:var(--muted)}
+    nav a:hover{background:rgba(255,255,255,.06);color:var(--txt)}
+    .cta{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(120deg,#0ea5e9,#7c3aed);padding:10px 14px;border-radius:14px;color:#fff;font-weight:600;box-shadow:0 8px 24px rgba(14,165,233,.35)}
+
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:26px;align-items:center;margin-top:40px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.08);border-radius:var(--br);box-shadow:0 20px 50px rgba(0,0,0,.25)}
+    .hero .text{padding:28px;border-radius:var(--br)}
+    h1{font-size:clamp(28px,4vw,44px);line-height:1.1;margin:0 0 10px}
+    .lead{color:var(--muted);font-size:clamp(14px,1.6vw,18px)}
+    .badges{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+    .badge{font-size:12px;color:#b9c4d6;padding:6px 10px;border:1px solid rgba(255,255,255,.12);border-radius:999px;background:rgba(255,255,255,.04)}
+    .hero .panel{padding:22px}
+    .panel .blob{height:260px;border-radius:24px;background:radial-gradient(120% 120% at 70% 30%,rgba(14,165,233,.6),rgba(124,58,237,.4) 45%,transparent 65%), linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.08)}
+
+    section{margin-top:42px}
+    h2{font-size:22px;margin:0 0 14px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .proj{padding:16px;border-radius:16px;transition:transform .15s ease, box-shadow .15s ease}
+    .proj:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(0,0,0,.25)}
+    .proj h3{margin:0 0 8px;font-size:16px}
+    .proj p{margin:0;color:var(--muted);font-size:14px}
+
+    .contact{display:flex;gap:12px;flex-wrap:wrap}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04)}
+
+    footer{opacity:.7;margin:34px 0 12px;font-size:13px}
+
+    @media (max-width:860px){
+      .hero{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand"><div class="logo" aria-hidden="true"></div> <span>Votre Nom</span></div>
+      <nav>
+        <a href="#projets">Projets</a>
+        <a href="#a-propos">À propos</a>
+        <a class="cta" href="#contact">Me contacter</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="text card">
+        <h1>Bonjour, je suis <span style="color:var(--acc)">Votre Nom</span></h1>
+        <p class="lead">Ingénieur / Chercheur. J'aime l'acoustique, la robotique et l'optimisation. Ici, je partage mes projets, notes et expériences.</p>
+        <div class="badges">
+          <span class="badge">Python</span>
+          <span class="badge">MATLAB</span>
+          <span class="badge">Acoustique</span>
+          <span class="badge">Robotique</span>
+        </div>
+        <a class="cta" href="#projets">Voir mes projets →</a>
+      </div>
+      <div class="panel card">
+        <div class="blob"></div>
+      </div>
+    </section>
+
+    <section id="projets">
+      <h2>Projets récents</h2>
+      <div class="grid">
+        <a class="proj card" href="#" target="_blank" rel="noopener">
+          <h3>Simulation acoustique</h3>
+          <p>Propagation d'onde et beamforming avec Python.</p>
+        </a>
+        <a class="proj card" href="#" target="_blank" rel="noopener">
+          <h3>Planification de trajectoire</h3>
+          <p>PRM + TEB, zones d'intérêt et contraintes 3D.</p>
+        </a>
+        <a class="proj card" href="#" target="_blank" rel="noopener">
+          <h3>PINNs pour PDE</h3>
+          <p>Réseaux de neurones informés par la physique.</p>
+        </a>
+      </div>
+    </section>
+
+    <section id="a-propos">
+      <h2>À propos</h2>
+      <p>Je suis ingénieur/chercheur basé dans le sud de la France, passionné par l'acoustique sous-marine, la planification de trajectoire et l'optimisation. Sur ce site, je documente mes expériences, partage des snippets de code et des billets techniques.</p>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="contact">
+        <a class="pill" href="mailto:votre.email@example.com">✉️ Email</a>
+        <a class="pill" href="https://github.com/votre-utilisateur" target="_blank" rel="noopener">🐙 GitHub</a>
+        <a class="pill" href="https://www.linkedin.com/in/votre-profil" target="_blank" rel="noopener">🔗 LinkedIn</a>
+        <a class="pill" href="#" target="_blank" rel="noopener">📄 CV (PDF)</a>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Votre Nom — Fait avec ❤️ et GitHub Pages
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear()
+  </script>
+</body>
+</html>
