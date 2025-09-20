@@ -4,197 +4,254 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Votre Nom — Portfolio</title>
-  <meta name="description" content="Portfolio minimaliste, style analytics, noir & blanc." />
+  <meta name="description" content="Site minimal noir, texte blanc/gris, avec légère animation d'arrière-plan au scroll." />
   <style>
-    /* ========= Variables & Reset ========= */
     :root{
-      --bg:#ffffff;          /* fond principal */
-      --fg:#0a0a0a;          /* texte principal */
-      --muted:#6b6b6b;       /* texte secondaire */
-      --line:#e6e6e6;        /* traits légers */
-      --accent:#000000;      /* éléments interactifs */
-      --radius:14px;         /* rayons légers */
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --bg:#0a0a0a;         /* noir profond */
+      --bg-soft:#0e0e10;    /* noir légèrement plus clair */
+      --fg:#f1f1f1;         /* texte principal */
+      --muted:#9ca3af;      /* texte secondaire */
+      --line:#1a1a1d;       /* séparateurs */
+      --accent:#ffffff;     /* détails interactifs, blancs */
+      --radius:18px;
+      --shadow:0 10px 30px rgba(0,0,0,.45);
       --sans: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-    }
-    @media (prefers-color-scheme: dark){
-      :root{ --bg:#0a0a0a; --fg:#f5f5f5; --muted:#a8a8a8; --line:#222; --accent:#fff; }
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     }
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font-family:var(--sans);}
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
+    ::selection{background:#ffffff14}
 
-    /* ========= Layout ========= */
+    /* ===== Layout ===== */
     .wrap{max-width:1100px;margin:0 auto;padding:28px}
-    header.site{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid var(--line)}
-    .brand{font-weight:700;letter-spacing:.4px}
-    nav{display:flex;gap:18px}
-    nav a{color:var(--muted)}
-    nav a:hover{color:var(--fg)}
+    .divider{height:1px;background:linear-gradient(90deg,transparent,#1c1c20,transparent);margin:28px 0}
 
-    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
-    .card{border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+    /* ===== Nav ===== */
+    .nav{position:sticky;top:0;z-index:20;backdrop-filter:saturate(120%) blur(10px);background:linear-gradient(180deg,#0a0a0acc,#0a0a0a88);border-bottom:1px solid #111}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 28px}
+    .brand{font-weight:700;letter-spacing:.04em}
+    .links{display:flex;gap:18px}
+    .links a{color:var(--muted)}
+    .links a:hover{color:var(--fg)}
 
-    /* ========= Hero ========= */
-    .hero{margin-top:22px}
-    .hero .title{font-size:clamp(24px,4vw,42px);line-height:1.1;margin:0 0 10px}
-    .hero .lead{color:var(--muted);max-width:60ch}
+    /* ===== Hero ===== */
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:center;padding:48px 28px 16px}
+    h1{font-size:clamp(28px,5vw,52px);line-height:1.06;margin:0}
+    .lead{color:var(--muted);max-width:60ch;margin-top:10px}
+    .cta{display:inline-flex;align-items:center;gap:10px;border:1px solid #2a2a2f;border-radius:999px;padding:10px 14px;margin-top:18px}
+    .cta:hover{border-color:#3a3a40;transform:translateY(-1px)}
 
-    /* ========= KPI / Analytics Tiles ========= */
-    .kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
-    .kpi .tile{border:1px solid var(--line);border-radius:10px;padding:12px}
+    .panel{background:radial-gradient(120% 120% at 70% 30%,#ffffff12,transparent 60%), linear-gradient(180deg,#0e0e10,#0b0b0d);border:1px solid #16161a;border-radius:var(--radius);box-shadow:var(--shadow);min-height:220px}
+
+    /* ===== KPI strip ===== */
+    .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+    .kpi{border:1px solid #16161a;border-radius:14px;padding:14px;background:#0b0b0e}
     .kpi .label{color:var(--muted);font-size:12px}
     .kpi .value{font-family:var(--mono);font-size:22px;margin-top:6px}
-    .spark{height:40px;margin-top:10px}
 
-    /* ========= Sections ========= */
-    section{margin-top:34px}
-    h2{font-size:16px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:0 0 12px}
+    /* ===== Projects ===== */
+    section{padding:24px 28px}
+    h2{font-size:14px;text-transform:uppercase;letter-spacing:.12em;color:#c8ccd3;margin:0 0 12px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .card{background:linear-gradient(180deg,#0d0d10,#0a0a0a);border:1px solid #16161a;border-radius:16px;padding:16px;transition:transform .15s ease, border-color .15s ease}
+    .card:hover{transform:translateY(-2px);border-color:#2a2a30}
+    .card p{color:var(--muted);margin:6px 0 0}
 
-    /* Projects table look */
-    .table{width:100%;border-collapse:collapse}
-    .table th,.table td{border-top:1px solid var(--line);padding:12px 6px;text-align:left}
-    .table th{font-size:12px;color:var(--muted);font-weight:600}
-    .table tr:hover td{background:rgba(0,0,0,.02)}
-    @media (prefers-color-scheme: dark){
-      .table tr:hover td{background:rgba(255,255,255,.03)}
+    /* ===== Animated section (subtle) ===== */
+    .motion{position:relative;border:1px solid #16161a;border-radius:20px;overflow:hidden;background:#0b0b0d}
+    .motion .overlay{position:absolute;inset:0;background:radial-gradient(120% 120% at 20% 10%,#ffffff08,transparent 60%), radial-gradient(120% 120% at 80% 90%,#ffffff05,transparent 60%);pointer-events:none}
+    canvas#field{display:block;width:100%;height:360px;background:transparent}
+    .motion .content{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:24px}
+    .motion h3{margin:0;font-size:clamp(18px,3.4vw,28px)}
+    .motion p{color:var(--muted);max-width:60ch}
+
+    /* ===== Contact ===== */
+    .contact{display:flex;gap:10px;flex-wrap:wrap}
+    .pill{display:inline-flex;align-items:center;gap:8px;border:1px solid #2a2a30;border-radius:999px;padding:10px 14px}
+    .pill:hover{border-color:#3a3a40;transform:translateY(-1px)}
+
+    footer{opacity:.7;border-top:1px solid #111;margin-top:28px;padding:18px 28px;font-size:13px}
+
+    @media (max-width:920px){
+      .hero{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr}
+      .kpis{grid-template-columns:repeat(2,1fr)}
     }
-
-    /* Timeline minimal */
-    .timeline{position:relative;padding-left:20px}
-    .timeline::before{content:"";position:absolute;left:6px;top:6px;bottom:6px;width:1px;background:var(--line)}
-    .t-item{position:relative;margin:10px 0}
-    .t-item::before{content:"";position:absolute;left:-2px;top:6px;width:9px;height:9px;border:1px solid var(--fg);border-radius:50%;background:var(--bg)}
-
-    /* Contact */
-    .actions{display:flex;gap:10px;flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--fg);border-radius:999px;padding:8px 12px;font-weight:600}
-    .btn:hover{transform:translateY(-1px)}
-
-    footer{border-top:1px solid var(--line);margin-top:34px;padding-top:18px;color:var(--muted);font-size:13px}
-
-    @media (max-width:900px){
-      .kpi{grid-template-columns:repeat(2,1fr)}
-    }
-    @media (max-width:640px){
-      .kpi{grid-template-columns:1fr}
+    @media (max-width:520px){
+      .kpis{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <!-- Top bar -->
-    <header class="site">
+  <!-- Top Nav -->
+  <div class="nav">
+    <div class="nav-inner wrap" style="padding-left:0;padding-right:0">
       <div class="brand">Votre Nom</div>
-      <nav>
-        <a href="#projects">Projets</a>
-        <a href="#notes">Notes</a>
+      <div class="links">
+        <a href="#projets">Projets</a>
+        <a href="#motion">Exploration</a>
         <a href="#contact">Contact</a>
-      </nav>
-    </header>
-
-    <!-- Hero / Intro -->
-    <section class="hero">
-      <h1 class="title">Ingénieur & Chercheur — acoustique · robotique · optimisation</h1>
-      <p class="lead">Site minimaliste orienté <em>analytics</em> : chiffres en un coup d'œil, tableau de projets, timeline compacte. Noir & blanc, sans dépendances externes.</p>
-
-      <!-- KPI Tiles (modifiable) -->
-      <div class="kpi">
-        <div class="tile">
-          <div class="label">Projets publiés</div>
-          <div class="value">12</div>
-          <svg class="spark" viewBox="0 0 100 24" preserveAspectRatio="none" aria-hidden="true">
-            <polyline fill="none" stroke="currentColor" stroke-width="1.5" points="0,20 10,18 20,16 30,14 40,13 50,11 60,9 70,8 80,7 90,5 100,4"/>
-          </svg>
-        </div>
-        <div class="tile">
-          <div class="label">Citations</div>
-          <div class="value">324</div>
-          <svg class="spark" viewBox="0 0 100 24" preserveAspectRatio="none">
-            <polyline fill="none" stroke="currentColor" stroke-width="1.5" points="0,22 10,21 20,19 30,18 40,16 50,15 60,14 70,13 80,11 90,10 100,8"/>
-          </svg>
-        </div>
-        <div class="tile">
-          <div class="label">Stars GitHub</div>
-          <div class="value">87</div>
-          <svg class="spark" viewBox="0 0 100 24" preserveAspectRatio="none">
-            <polyline fill="none" stroke="currentColor" stroke-width="1.5" points="0,18 10,18 20,17 30,15 40,14 50,14 60,12 70,12 80,10 90,9 100,9"/>
-          </svg>
-        </div>
-        <div class="tile">
-          <div class="label">Talks / an</div>
-          <div class="value">5</div>
-          <svg class="spark" viewBox="0 0 100 24" preserveAspectRatio="none">
-            <polyline fill="none" stroke="currentColor" stroke-width="1.5" points="0,20 10,20 20,18 30,17 40,17 50,15 60,15 70,14 80,14 90,13 100,12"/>
-          </svg>
-        </div>
       </div>
-    </section>
-
-    <!-- Projects as table -->
-    <section id="projects">
-      <h2>Projets</h2>
-      <table class="table">
-        <thead>
-          <tr>
-            <th style="width:36%">Projet</th>
-            <th>Description</th>
-            <th style="width:18%">Rôle</th>
-            <th style="width:14%">Année</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><a href="#">Simulation acoustique</a></td>
-            <td>Propagation d'onde & beamforming en Python. Affichages SPL/phase.</td>
-            <td>Lead dev</td>
-            <td>2025</td>
-          </tr>
-          <tr>
-            <td><a href="#">PRM + TEB 3D</a></td>
-            <td>Planification de trajectoire avec zones d'intérêt et contraintes d'altitude.</td>
-            <td>Recherche</td>
-            <td>2025</td>
-          </tr>
-          <tr>
-            <td><a href="#">PINNs on Waves</a></td>
-            <td>Réseaux de neurones informés par la physique pour PDE hyperboliques.</td>
-            <td>Expérimentation</td>
-            <td>2024</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <!-- Compact timeline -->
-    <section id="notes">
-      <h2>Notes & activités</h2>
-      <div class="timeline">
-        <div class="t-item"><strong>[2025‑09]</strong> Présentation sur la modélisation acoustique — Meetup local.</div>
-        <div class="t-item"><strong>[2025‑06]</strong> Publication du repo PRM‑TEB 3D (code + doc).</div>
-        <div class="t-item"><strong>[2025‑02]</strong> Article révisé pour IEEE JOE — révisions mineures.</div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact">
-      <h2>Contact</h2>
-      <div class="actions">
-        <a class="btn" href="mailto:votre.email@example.com">✉︎ Email</a>
-        <a class="btn" href="https://github.com/votre-utilisateur" target="_blank">GitHub</a>
-        <a class="btn" href="https://www.linkedin.com/in/votre-profil" target="_blank">LinkedIn</a>
-      </div>
-    </section>
-
-    <footer>
-      © <span id="year"></span> Votre Nom — Monochrome / Analytics. Aucune dépendance externe.
-    </footer>
+    </div>
   </div>
 
+  <!-- Hero -->
+  <section class="hero wrap">
+    <div>
+      <h1>Ingénieur & Chercheur — <span style="color:#d4d7de">acoustique</span>, <span style="color:#d4d7de">robotique</span>, <span style="color:#d4d7de">optimisation</span></h1>
+      <p class="lead">Portfolio minimal noir & blanc. Lisible, rapide, avec une **animation d'arrière‑plan très légère** déclenchée uniquement quand on passe dans la section dédiée, pour rester sobre et économe en ressources.</p>
+      <a class="cta" href="#projets">Voir mes projets →</a>
+      <div class="kpis">
+        <div class="kpi"><div class="label">Projets open‑source</div><div class="value">12</div></div>
+        <div class="kpi"><div class="label">Articles</div><div class="value">8</div></div>
+        <div class="kpi"><div class="label">Talks</div><div class="value">5/an</div></div>
+        <div class="kpi"><div class="label">Stack</div><div class="value">Python · MATLAB</div></div>
+      </div>
+    </div>
+    <div class="panel" aria-hidden="true"></div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Projects -->
+  <section id="projets" class="wrap">
+    <h2>Projets</h2>
+    <div class="grid">
+      <a class="card" href="#" target="_blank" rel="noopener">
+        <strong>Simulation acoustique</strong>
+        <p>Propagation d'onde et beamforming en Python. Affichages SPL/phase.</p>
+      </a>
+      <a class="card" href="#" target="_blank" rel="noopener">
+        <strong>PRM + TEB 3D</strong>
+        <p>Planification avec zones d'intérêt et contraintes d'altitude.</p>
+      </a>
+      <a class="card" href="#" target="_blank" rel="noopener">
+        <strong>PINNs on Waves</strong>
+        <p>Réseaux de neurones informés par la physique pour PDE.</p>
+      </a>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Motion Section with subtle animated background -->
+  <section id="motion" class="wrap">
+    <h2>Exploration</h2>
+    <div class="motion">
+      <canvas id="field" aria-hidden="true"></canvas>
+      <div class="overlay" aria-hidden="true"></div>
+      <div class="content">
+        <div>
+          <h3>Arrière‑plan animé discret</h3>
+          <p>Nuage de particules gris très doux. Il **ne s'active** que lorsque cette section est visible à l'écran (pause automatique hors champ), et respecte <code>prefers-reduced-motion</code>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Contact -->
+  <section id="contact" class="wrap">
+    <h2>Contact</h2>
+    <div class="contact">
+      <a class="pill" href="mailto:votre.email@example.com">✉︎ Email</a>
+      <a class="pill" href="https://github.com/votre-utilisateur" target="_blank">GitHub</a>
+      <a class="pill" href="https://www.linkedin.com/in/votre-profil" target="_blank">LinkedIn</a>
+    </div>
+  </section>
+
+  <footer>
+    © <span id="year"></span> Votre Nom — Noir minimal. Aucune dépendance externe.
+  </footer>
+
   <script>
-    // Année automatique
+    // Année dynamique
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ===== Canvas particle field (subtle) =====
+    (function(){
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const canvas = document.getElementById('field');
+      const ctx = canvas.getContext('2d');
+      let width, height, particles = [], running = false, rafId = null;
+
+      function resize(){
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const rect = canvas.getBoundingClientRect();
+        width = Math.floor(rect.width * dpr);
+        height = Math.floor(rect.height * dpr);
+        canvas.width = width; canvas.height = height;
+        ctx.setTransform(dpr,0,0,dpr,0,0); // scale drawing for crispness
+      }
+
+      function init(){
+        particles = [];
+        const count = Math.max(40, Math.floor((canvas.clientWidth * canvas.clientHeight)/12000));
+        for(let i=0;i<count;i++){
+          particles.push({
+            x: Math.random()*canvas.clientWidth,
+            y: Math.random()*canvas.clientHeight,
+            vx: (Math.random()-0.5)*0.2,
+            vy: (Math.random()-0.5)*0.2,
+            r: Math.random()*1.4 + 0.6,
+            a: 0.25 + Math.random()*0.3
+          });
+        }
+      }
+
+      function step(){
+        ctx.clearRect(0,0,canvas.clientWidth,canvas.clientHeight);
+        ctx.fillStyle = '#ffffff';
+        ctx.globalAlpha = 0.9;
+        for(const p of particles){
+          // drift
+          p.x += p.vx; p.y += p.vy;
+          if(p.x < -10) p.x = canvas.clientWidth+10; if(p.x > canvas.clientWidth+10) p.x = -10;
+          if(p.y < -10) p.y = canvas.clientHeight+10; if(p.y > canvas.clientHeight+10) p.y = -10;
+          // draw point
+          ctx.globalAlpha = p.a;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+          ctx.fill();
+        }
+        // subtle connections
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 0.6;
+        ctx.globalAlpha = 0.04;
+        for(let i=0;i<particles.length;i++){
+          for(let j=i+1;j<particles.length;j++){
+            const a = particles[i], b = particles[j];
+            const dx = a.x-b.x, dy = a.y-b.y, d2 = dx*dx+dy*dy;
+            if(d2 < 110*110){
+              ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+            }
+          }
+        }
+        if(running) rafId = requestAnimationFrame(step);
+      }
+
+      function start(){ if(running||prefersReduced) return; running = true; step(); }
+      function stop(){ running = false; if(rafId) cancelAnimationFrame(rafId); }
+
+      // Init sizes & particles
+      const ro = new ResizeObserver(()=>{ resize(); init(); if(running) { stop(); start(); } });
+      ro.observe(canvas);
+
+      // Start/stop on section visibility
+      const section = document.getElementById('motion');
+      const io = new IntersectionObserver(entries=>{
+        entries.forEach(e=>{ e.isIntersecting ? start() : stop(); });
+      }, {threshold: 0.2});
+      io.observe(section);
+
+      // Initialize once
+      resize(); init();
+      // Pause if reduced motion preferred
+      if(prefersReduced) stop();
+    })();
   </script>
 </body>
 </html>
